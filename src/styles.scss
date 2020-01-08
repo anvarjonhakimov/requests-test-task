@@ -1,0 +1,129 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+img {
+  object-fit: contain;
+  cursor: pointer;
+
+  &:active, &:focus {
+    outline: none;
+  }
+}
+
+input[type=text] {
+  border-radius: 20px;
+  box-shadow: 0 0 7px 0 rgba(0, 140, 240, 0.15), inset 0 1px 7px 0 rgba(0, 0, 0, 0.11);
+  border: solid 1px #42aaff;
+  background-color: #ffffff;
+  padding: 0 8px;
+}
+
+button {
+  width: 180px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #008cf0;
+  color: #ffffff;
+  font-size: 14px;
+  border: none;
+  box-shadow: none;
+  line-height: 1;
+
+  &:active, &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    background: #808080;
+  }
+}
+
+table {
+  width: 100%;
+
+  tr {
+    &:first-child {
+      border-bottom: 2px solid #dae0e7;
+    }
+
+    &:not(:first-child) {
+      border-bottom: 2px solid #EEF1F4;
+    }
+
+    th:first-child, td:first-child {
+      text-align: center;
+    }
+
+    th {
+      position: relative;
+      padding: 12px;
+
+      &:last-child {
+        padding-right: 0;
+        border-right: 0;
+      }
+
+      &:not(:last-child)::after {
+        position: absolute;
+        right: 0;
+        content: '';
+        height: 22px;
+        margin-left: 12px;
+        border-right: 1px solid #dae0e7;
+      }
+    }
+
+    td {
+      position: relative;
+      padding: 8px 12px;
+      cursor: pointer;
+
+      &:first-child > span {
+        position: absolute;
+        left: 0;
+        top: 2px;
+        bottom: 2px;
+        border-left: 4px solid transparent;
+        border-radius: 1.5px;
+      }
+
+      .task-status {
+        height: 22px;
+        border: 1px solid transparent;
+        border-radius: 11px;
+        color: #ffffff;
+        padding: 0 10px 2px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+textarea {
+  width: 625px;
+  height: 85px;
+  border-radius: 5px;
+  border: solid 1px #e8e8e8;
+  background-color: #f9f9fa;
+  resize: none;
+  color: #060606;
+}
+
+label, p, span {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+label {
+  display: flex;
+  color: #9f9ea7;
+  margin-bottom: 14px;
+}
+
+p {
+  color: #060606;
+}

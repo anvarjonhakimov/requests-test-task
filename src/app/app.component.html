@@ -1,0 +1,45 @@
+<div class="d-flex h-100">
+  <div class="sidebar">
+    <div class="my-3">
+      <a routerLink="/">
+        <img src="../assets/img/logo.png" alt="logo">
+      </a>
+    </div>
+
+    <div class="d-flex flex-column">
+      <a routerLink="base-of-knowledge" class="links">
+        <img src="../assets/img/base-of-knowledge.png" alt="base-of-knowledge">
+        <span>База знаний</span>
+      </a>
+
+      <a routerLink="requests" class="links">
+        <img src="../assets/img/requests.png" alt="requests">
+        <span>Заявки</span>
+      </a>
+
+      <a routerLink="employees" class="links">
+        <img src="../assets/img/employees.png" alt="employees">
+        <span>Сотрудники</span>
+      </a>
+
+      <a routerLink="clients" class="links">
+        <img src="../assets/img/clients.png" alt="clients">
+        <span>Клиенты</span>
+      </a>
+
+      <a routerLink="analytics" class="links">
+        <img src="../assets/img/analytics.png" alt="analytics">
+        <span>Активы</span>
+      </a>
+
+      <a routerLink="settings" class="links">
+        <img src="../assets/img/settings.png" alt="settings">
+        <span>Настройки</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,181 @@
+<div class="header">
+  <div class="search-container">
+    <input type="text"
+           class="find">
+
+    <img src="../../../assets/img/search.png"
+         alt="search">
+  </div>
+</div>
+
+<button class="my-3 add-request-button"
+        (click)="openNewRequest()">Создать заявку
+</button>
+
+<div class="main-container">
+  <div class="tasks">
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Статус</th>
+        <th>Исполнитель</th>
+      </tr>
+
+      <tr *ngFor="let task of tasks"
+          (click)="selectTask(task)">
+        <td>
+          <span [style.border-left-color]="task.statusRgb"></span>
+          {{task.id}}
+        </td>
+        <td>{{task.name | ellipsis}}</td>
+        <td>
+        <span class="task-status"
+              [style.background-color]="task.statusRgb">{{task.statusName}}</span>
+        </td>
+        <td>{{task.executorName}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div *ngIf="isNewRequest || isEditRequest"
+       class="edit-request-container">
+    <ng-container *ngIf="isNewRequest"
+                  [ngTemplateOutlet]="newRequestTemplate"></ng-container>
+
+    <ng-container *ngIf="isEditRequest"
+                  [ngTemplateOutlet]="editRequestTemplate"></ng-container>
+  </div>
+</div>
+
+<ng-template #newRequestTemplate>
+  <div class="edit-request-container-header">
+    <span>Новая заявка</span>
+    <img src="../../../assets/img/close.png"
+         alt="close"
+         (click)="closeEditRequest()">
+  </div>
+
+  <div class="d-flex flex-column mt-5 ml-5"
+       [formGroup]="newRequestFormGroup">
+    <label for="name">Название</label>
+    <textarea name="name"
+              id="name"
+              cols="30"
+              rows="10"
+              formControlName="name"
+    ></textarea>
+
+    <label for="description"
+           class="mt-3">Описание</label>
+    <textarea name="description"
+              id="description"
+              class="description-field"
+              cols="30"
+              rows="10"
+              formControlName="description"
+    ></textarea>
+
+    <button (click)="createNewRequest()"
+            [disabled]="isPending">Сохранить
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #editRequestTemplate>
+  <div class="edit-request-container-header">
+    <div class="d-flex align-items-center">
+      <span class="mr-3">№{{selectedTask.id}}</span>
+      <span>{{selectedTask.name}}</span>
+    </div>
+    <img src="../../../assets/img/close.png"
+         alt="close"
+         (click)="closeEditRequest()">
+  </div>
+
+  <div class="edit-request-main"
+       [formGroup]="editRequestFormGroup">
+    <div class="d-flex">
+      <div class="col-9 mt-5 pl-4 border-right">
+        <label>Описание</label>
+        <p class="mb-5">{{selectedTask.description}}</p>
+
+        <textarea name="comments"
+                  id="comments"
+                  cols="30"
+                  rows="10"
+                  class="comment-edit mb-4"
+                  formControlName="comment"
+                  placeholder="Добавление комментариев"
+        ></textarea>
+
+        <button class="mb-5"
+                [disabled]="isPending"
+                (click)="editRequest()">Сохранить
+        </button>
+
+        <ng-container *ngIf="selectedTask.lifetimeItems.length">
+          <div *ngFor="let item of selectedTask.lifetimeItems"
+               class="d-flex mb-3">
+            <div class="circle"></div>
+
+            <div class="d-flex flex-column ml-2">
+              <span class="mb-2">{{item.userName}}</span>
+              <span class="comment-date mb-2">{{item.createdAt | date: 'd MMMM, HH:mm': '+0500': 'ru-Ru'}}
+                прокомментировал</span>
+
+              <span class="user-comment">{{item.comment}}</span>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="col-3 mt-5">
+        <div class="d-flex flex-column">
+          <div class="d-flex align-items-center mb-5">
+            <span class="status-circle mr-2"
+                  [style.background-color]="selectedStatus.rgb"></span>
+
+            <select class="form-control form-control-sm"
+                    formControlName="statusId">
+              <option *ngFor="let status of statuses"
+                      [value]="status.id">{{status.name}}</option>
+            </select>
+          </div>
+
+          <label class="mb-0">Заявитель</label>
+          <span class="mb-4">Александр Вознесенский</span>
+
+          <label class="mb-0">Создана</label>
+          <span class="mb-4">{{selectedTask.initiatorName}}</span>
+
+          <div class="d-flex flex-column mb-4">
+            <label class="mb-0">Исполнитель</label>
+
+            <select class="form-control form-control-sm"
+                    formControlName="executorId">
+              <option *ngFor="let user of users"
+                      [value]="user.id">{{user.name}}</option>
+            </select>
+          </div>
+
+          <label class="mb-0">Приоритет</label>
+          <span class="mb-4">{{selectedTask.priorityName}}</span>
+
+          <label class="mb-1">Срок</label>
+          <div *ngIf="selectedTask.resolutionDatePlan"
+               class="d-flex align-items-center mb-4">
+            <img src="../../../assets/img/calendar.png"
+                 class="mr-2"
+                 alt="calendar">
+            <span>{{selectedTask.resolutionDatePlan | date: 'dd.mm.yyyy'}}г.</span>
+          </div>
+
+          <label class="mb-2">Теги</label>
+          <p *ngFor="let tag of selectedTask.tags"
+             class="tag">{{tag.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

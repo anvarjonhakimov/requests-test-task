@@ -1,0 +1,155 @@
+:host {
+  height: 100%;
+  position: relative;
+}
+
+select {
+  max-width: 150px;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #ced4da;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 65px;
+  width: 100%;
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+  background-color: #d1e0ed;
+
+  .search-container {
+    position: relative;
+
+    > .find {
+      height: 40px;
+      width: 680px;
+      margin-left: 16px;
+      padding-left: 16px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    > img {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+    }
+  }
+}
+
+.add-request-button {
+  margin-left: 260px;
+}
+
+.tasks {
+  padding: 0 4px;
+  width: 100%;
+}
+
+.edit-request-container {
+  position: absolute;
+  top: 65px;
+  right: 0;
+  width: 975px;
+  border: 1px solid #d7dce0;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+  background-color: #ecf3f7;
+  height: 100%;
+
+  .edit-request-container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+    background-color: #1a4876;
+    color: #ffffff;
+    padding: 0 30px 0 36px;
+  }
+
+  .edit-request-main {
+    display: flex;
+    height: calc(100vh - 127px);
+    overflow-y: auto;
+  }
+
+  .description-field {
+    width: 625px;
+    height: 134px;
+    margin-bottom: 74px;
+  }
+
+  button {
+    width: 150px;
+    height: 36px;
+  }
+
+  .comment-edit {
+    border: 0;
+    background-color: #ecf3f7;
+
+    &:focus {
+      border: solid 1px #e8e8e8;
+      outline: none;
+    }
+
+    &::placeholder {
+      font-size: 14px;
+      font-weight: 300;
+      color: #9f9ea7;
+    }
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
+    border: solid 1px #c5cdd3;
+    background-color: #f5f5f5;
+    border-radius: 50px;
+  }
+
+  .comment-date {
+    font-size: 12px;
+    font-weight: normal;
+    letter-spacing: 0.06px;
+    color: #63677c;
+  }
+
+  .user-comment {
+    border-radius: 6px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+    background-color: #ecf3f7;
+    padding: 10px;
+    max-width: 620px;
+  }
+
+  .status-circle {
+    width: 11px;
+    height: 11px;
+    border-radius: 5.5px;
+  }
+
+  .tag {
+    border-radius: 10px;
+    border: solid 1px #9da1aa;
+    background-color: #ffffff;
+    font-size: 12px;
+    font-weight: 300;
+    color: #9da1aa;
+    padding: 0 8px 2px;
+    margin: 0;
+    width: fit-content;
+
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  }
+}
